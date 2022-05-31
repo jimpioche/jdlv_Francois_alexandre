@@ -225,19 +225,19 @@ def wallA(grid, color):
     return grid
 
 
-
 def apply_rules (grid, compteur):
     next_grid = grid
+    cases = next_grid.cases
     compt = len(cases) - 1
     for s in range(25):
         next_grid = clean_grid(grid)
         compt = compt - 1
-        next_grid = make_tank(grid, 40, compt, red)
-        next_grid = make_tank(grid, 55, compt, red)
-        next_grid = make_tank(grid, 70, compt, red)
-    next_grid = wall(grid, black)
+        next_grid = make_tank(grid, 40, compt, "red")
+        next_grid = make_tank(grid, 55, compt, "red")
+        next_grid = make_tank(grid, 70, compt, "red")
+    next_grid = wall(grid, "black")
     for d in range (1, 200):
-        if compteur %20 == O:
+        if compteur %20 == 0:
             shoot = randint(1, 3)
             if shoot == 1:
                 shoot = 45
@@ -245,12 +245,12 @@ def apply_rules (grid, compteur):
                 shoot = 60
             else:
                 shoot = 75
-            next_grid = make_bullet(grid, shoot, 70, black)
+            next_grid = make_bullet(grid, shoot, 70, "black")
         else:
             next_grid = apply_game_of_life_rules(grid)
-    next_grid = wallA(grid)
+    next_grid = wallA(grid, "red")
     for d in range (1, 200):
-        if compteur %20 == O:
+        if compteur %20 == 0:
             shoot = randint(1, 3)
             if shoot == 1:
                 shoot = 45
@@ -258,7 +258,7 @@ def apply_rules (grid, compteur):
                 shoot = 60
             else:
                 shoot = 75
-            next_grid = make_bullet(grid, shoot, 70, black)
+            next_grid = make_bullet(grid, shoot, 70, "black")
         else:
             next_grid = apply_game_of_life_rulesA(grid)
     for f in range(1, 50):
